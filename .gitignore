@@ -16,3 +16,5 @@ packages/metadata.json
 
 
 packages/.vitepress/cache/*
+
+.parcel-cache

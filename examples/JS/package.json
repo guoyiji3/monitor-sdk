@@ -4,10 +4,15 @@
   "description": "js example",
   "license": "ISC",
   "scripts": {
-    "dev": "parcel watch index.html",
-    "examples": "cross-env NODE_ENV=demo esno ../examples/server"
+    "dev": "parcel index.html --port 2025 --no-source-maps",
+    "examples": "cross-env NODE_ENV=demo esno ../server"
   },
   "dependencies": {
     "@ny/monitor-browser": "workspace:^"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "esno": "^0.17.0",
+    "parcel": "^2.12.0"
   }
 }

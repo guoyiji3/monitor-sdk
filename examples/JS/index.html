@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>native-js-demo</title>
+    <script type="module" src="./index.ts"></script>
   </head>
   <body>
     <h1>native-js:控制台输出信息调试</h1>
@@ -15,9 +16,8 @@
     <button id="logUpload" onclick="mitoLog()">log上报</button>
     <button id="promiseError" onclick="promiseError()">promiseError</button>
     <button id="resourceError" onclick="resourceError()">resourceError</button>
-    <script src="./index.ts"></script>
-
     <script>
+      const serverUrl = 'http://localhost:2024'
       function codeError() {
         const a = {};
         a.split('/');
@@ -39,7 +39,7 @@
         window._MITO_.tracker({ message: { one: 111 }, tag: '测试' });
       }
       function onClickNativeFetch() {
-        fetch('/normal/post', {
+        fetch(`${serverUrl}/normal/post`, {
           method: 'POST',
           body: JSON.stringify({ test: '测试请求体' }),
           mode: 'cors',
@@ -51,7 +51,7 @@
         });
       }
       function onClickNativeErrorFetch() {
-        fetch('/exception/post', {
+        fetch(`${serverUrl}/exception/post`, {
           method: 'POST',
           body: JSON.stringify({ test: '测试请求体' }),
           mode: 'cors',
@@ -68,9 +68,8 @@
         );
       }
       function onClickXhrNormal() {
-        console.log('12312');
         const xhr = new XMLHttpRequest();
-        xhr.open('get', '/normal');
+        xhr.open('get', `${serverUrl}/normal`);
         xhr.setRequestHeader('content-type', 'application/json');
         xhr.send();
         xhr.onreadystatechange = function () {
@@ -81,7 +80,7 @@
       }
       function onClickXhrError() {
         const xhr = new XMLHttpRequest();
-        xhr.open('get', '/exception');
+        xhr.open('get', `${serverUrl}/exception`);
         xhr.setRequestHeader('content-type', 'application/json');
         xhr.send();
         xhr.onreadystatechange = function () {

@@ -1,33 +1,33 @@
-stages:
-  - deployment
-  - publish
+# stages:
+#   - deployment
+#   - publish
 
-deployment:
-  stage: deployment
-  cache:
-    untracked: true
-    paths:
-      - /node_modules/
-  before_script:
-    - echo "docs - 开始"
-  script:
-    - pnpm install
-    - pnpm run build:docs
-  after_script:
-    - rsync -avz --delete -e 'ssh -p 60022' ./docs yanfa@192.168.10.1:/app/wwwroot/monitor
-    - echo "docs - 结束"
-  only:
-    - master
+# deployment:
+#   stage: deployment
+#   cache:
+#     untracked: true
+#     paths:
+#       - /node_modules/
+#   before_script:
+#     - echo "docs - 开始"
+#   script:
+#     - pnpm install
+#     - pnpm run build:docs
+#   after_script:
+#     - rsync -avz --delete -e 'ssh -p 60022' ./docs yanfa@192.168.10.1:/app/wwwroot/monitor
+#     - echo "docs - 结束"
+#   only:
+#     - master
 
-publish:
-  stage: publish
-  before_script:
-    - echo "publish - 开始"
-    - pnpm set //nynpm.91160.com/:_authToken=PKnYTQaIckXD6ECzTHRt1qrIk55zhxCRMJuNpLDFgE0=
-  script:
-    - pnpm install
-    - pnpm run publish:ci
-  after_script:
-    - echo "publish - 结束"
-  only:
-    - tags
+# publish:
+#   stage: publish
+#   before_script:
+#     - echo "publish - 开始"
+#     - pnpm set //nynpm.91160.com/:_authToken=PKnYTQaIckXD6ECzTHRt1qrIk55zhxCRMJuNpLDFgE0=
+#   script:
+#     - pnpm install
+#     - pnpm run publish:ci
+#   after_script:
+#     - echo "publish - 结束"
+#   only:
+#     - tags

@@ -1,7 +1,7 @@
 import { BrowserPluginTypes, CategoryTypes, PerformanceTypes } from '@ny/monitor-shared';
 import { _global, numFixed, isContains, Severity, getTimestamp } from '@ny/monitor-utils';
 import { BasePluginType } from '@ny/monitor-types';
-import Perfume from 'perfume.js';
+import { initPerfume } from 'perfume.js';
 import { BrowserClient } from '../../browserClient';
 
 export interface Options {
@@ -16,6 +16,8 @@ export interface IPerfumeOptions {
   eventProperties: any;
   navigatorInformation: any;
   vitalsScore: string | null;
+  attribution: any;
+  rating: any;
 }
 
 const MetricNameBucket = {};
@@ -68,11 +70,11 @@ const perfumePlugin: BasePluginType<BrowserPluginTypes, BrowserClient> = {
     const { enable = true, xhrTiming = true, scriptTiming = true } = {};
     const isOpenResourceTiming = xhrTiming || scriptTiming || true;
     if (!enable) return;
-    new Perfume({
+    initPerfume({
       resourceTiming: isOpenResourceTiming,
       elementTiming: false, // 元素在屏幕上显示的时间
-      analyticsTracker: (options: IPerfumeOptions) => {
-        const { metricName, data } = options;
+      analyticsTracker: (options: any) => {
+        const { metricName, data, attribution, rating } = options;
         MetricNameBucket[metricName] = data;
 
         // analyticsTool.collectGroup(['ttfb', 'fp', 'fcp'], notify)
@@ -103,32 +105,41 @@ const perfumePlugin: BasePluginType<BrowserPluginTypes, BrowserClient> = {
               analyticsTool.collectResource(PerformanceTypes.API, 'xmlhttprequest', data, notify);
             }
             break;
-          case 'fp':
+          case 'RT':
             analyticsTool.track(PerformanceTypes.PAGE, metricName, { duration: data }, notify);
             break;
-          case 'fcp':
+          case 'FCP':
             analyticsTool.track(PerformanceTypes.PAGE, metricName, { duration: data }, notify);
             break;
-          case 'ttfb':
+          case 'TTFB':
             analyticsTool.track(PerformanceTypes.PAGE, metricName, { duration: data }, notify);
             break;
-          case 'fid':
+          case 'FID':
             analyticsTool.track(PerformanceTypes.PAGE, metricName, { duration: data }, notify);
             break;
-          case 'lcp':
+          case 'LCP':
             analyticsTool.track(PerformanceTypes.PAGE, metricName, { duration: data }, notify);
             break;
-          case 'cls':
+          case 'CLS':
             analyticsTool.track(PerformanceTypes.PAGE, metricName, { value: data }, notify);
             break;
-          case 'clsFinal':
-            analyticsTool.track(PerformanceTypes.PAGE, metricName, { value: data }, notify);
-            break;
-          case 'tbt':
+          case 'TBT':
             analyticsTool.track(PerformanceTypes.PAGE, metricName, { duration: data }, notify);
             break;
           case 'elPageTitle':
             analyticsTool.track(PerformanceTypes.PAGE, metricName, { duration: data }, notify);
+            break;
+          case 'userJourneyStep':
+            analyticsTool.track(
+              PerformanceTypes.PAGE,
+              metricName,
+              {
+                duration: data,
+                stepName: attribution.step_name,
+                vitals_score: rating
+              },
+              notify
+            );
             break;
           default:
             analyticsTool.track(PerformanceTypes.PAGE, metricName, { ...data }, notify);

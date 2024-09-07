@@ -45,17 +45,17 @@ async function goSuccess(request: StrictRequest<DefaultBodyType>, hasBody: boole
 const baseURL = 'http://localhost:3000';
 
 const handlers = [
-  http.get(baseURL + '/get', ({ request }) => result(request, false)),
-  http.get(baseURL + '/get/delay/:milliseconds', ({ request, params }) => delayGet(params, request, false)),
-  http.post(baseURL + '/post', ({ request }) => result(request, true)),
-  http.post(baseURL + '/status/:status', ({ request, params }) => status(+params['status'])),
-  http.put(baseURL + '/put', ({ request }) => result(request, true)),
-  http.delete(baseURL + '/delete', ({ request }) => result(request, true)),
-  http.get(baseURL + '/java/success', ({ request }) => javaSuccess(request, false)),
-  http.get(baseURL + '/go/success', ({ request }) => goSuccess(request, false)),
-  http.post(baseURL + '/go/success', ({ request }) => goSuccess(request, true)),
-  http.put(baseURL + '/go/success', ({ request }) => goSuccess(request, true)),
-  http.delete(baseURL + '/go/success', ({ request }) => goSuccess(request, true))
+  http.get(`${baseURL}/get`, ({ request }) => result(request, false)),
+  http.get(`${baseURL}/get/delay/:milliseconds`, ({ request, params }) => delayGet(params, request, false)),
+  http.post(`${baseURL}/post`, ({ request }) => result(request, true)),
+  http.post(`${baseURL}/status/:status`, ({ request, params }) => status(+params.status)),
+  http.put(`${baseURL}/put`, ({ request }) => result(request, true)),
+  http.delete(`${baseURL}/delete`, ({ request }) => result(request, true)),
+  http.get(`${baseURL}/java/success`, ({ request }) => javaSuccess(request, false)),
+  http.get(`${baseURL}/go/success`, ({ request }) => goSuccess(request, false)),
+  http.post(`${baseURL}/go/success`, ({ request }) => goSuccess(request, true)),
+  http.put(`${baseURL}/go/success`, ({ request }) => goSuccess(request, true)),
+  http.delete(`${baseURL}/go/success`, ({ request }) => goSuccess(request, true))
 ];
 
 export default handlers;

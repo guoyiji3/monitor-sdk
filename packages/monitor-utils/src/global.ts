@@ -20,7 +20,7 @@ interface MONITORGlobal {
   __MONITOR__?: GlobalSupport;
 }
 
-export const isNodeEnv = variableTypeDetection.isProcess(typeof process !== 'undefined' ? process : 0);
+export const isNodeEnv = variableTypeDetection.isProcess(typeof globalThis.process !== 'undefined' ? globalThis.process : 0);
 
 export const isWxMiniEnv =
   variableTypeDetection.isObject(typeof window.wx !== 'undefined' ? window.wx : 0) &&
@@ -31,11 +31,12 @@ export const isBrowserEnv = variableTypeDetection.isWindow(typeof window !== 'un
  * 获取全局变量
  * returns Global scope object
  */
+// eslint-disable-next-line consistent-return
 export function getGlobal<T>() {
   if (isBrowserEnv) return window as unknown as MONITORGlobal & T;
   if (isWxMiniEnv) return window.wx as unknown as MONITORGlobal & T;
   // it's true when run e2e
-  if (isNodeEnv) return process as unknown as MONITORGlobal & T;
+  if (isNodeEnv) return globalThis.process as unknown as MONITORGlobal & T;
 }
 
 // whether it is right use &

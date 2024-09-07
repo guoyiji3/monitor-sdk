@@ -1,6 +1,6 @@
-import { BrowserBreadcrumbTypes, CategoryTypes } from '@ny/monitor-shared'
-import { Severity } from '@ny/monitor-utils'
-import { BrowserClient } from './browserClient'
+import { BrowserBreadcrumbTypes, CategoryTypes } from '@ny/monitor-shared';
+import { Severity } from '@ny/monitor-utils';
+import { BrowserClient } from './browserClient';
 
 /**
  * 添加浏览器行为栈
@@ -25,7 +25,7 @@ export function addBreadcrumbInBrowser(
     data,
     level,
     ...params
-  })
+  });
 }
 
 /**
@@ -35,21 +35,21 @@ export function addBreadcrumbInBrowser(
  * @returns
  */
 export function apiCustomReport(data: any, cb?: (res: any) => boolean) {
-  let needReport = false
+  let needReport = false;
 
   if (data && /^\{.*\}$/.test(data)) {
-    const res = JSON.parse(data)
+    const res = JSON.parse(data);
     // 支持自定义业务接口报错上报
     if (cb && res) {
-      return cb(res) || (typeof res?.success === 'boolean' && !res.success)
+      return cb(res) || (typeof res?.success === 'boolean' && !res.success);
     }
     // 响应有success字段，并且为false才需要上报
     if (res && typeof res?.success === 'boolean') {
-      needReport = !res.success
+      needReport = !res.success;
     }
   }
 
-  return needReport
+  return needReport;
 }
 
 /**
@@ -59,14 +59,14 @@ export function apiCustomReport(data: any, cb?: (res: any) => boolean) {
  */
 export function getErrorCode(data: any, fields: string[]) {
   if (data && /^\{.*\}$/.test(data)) {
-    const res = JSON.parse(data)
+    const res = JSON.parse(data);
     if (fields.length) {
       for (const field of fields) {
         if (res[field]) {
-          return res[field]
+          return res[field];
         }
       }
     }
   }
-  return undefined
+  return undefined;
 }

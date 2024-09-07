@@ -2,11 +2,13 @@ import http from 'http';
 import express from 'express';
 import opn from 'open';
 import coBody from 'co-body';
+import cors from 'cors';
 import { port, FilePaths, ServerUrls } from './config';
 
 const app = express();
 
-const url = `http://localhost:${port}/JS/index.html`;
+app.use(cors());
+
 Object.entries(FilePaths).forEach(([path, resolvePath]) => {
   app.use(path, express.static(resolvePath));
 });
@@ -43,7 +45,7 @@ const server = http.createServer(app);
 
 server.listen(port, () => {
   if (process.env.NODE_ENV === 'demo') {
-    console.log(`examples is available at: http://localhost:${port}`);
-    // opn(url);
+    const urls = `http://localhost:${port}`;
+    console.log(`examples server is available at: ${urls}`);
   }
 });

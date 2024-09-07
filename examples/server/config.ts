@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 
-export const port = 2021;
+export const port = 2024;
 const resolveDirname = (target: string) => resolve(__dirname, target);
 const JsFilePath = resolveDirname('../JS');
 const VueFilePath = resolveDirname('../Vue');

@@ -4,11 +4,13 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   resolve: {
     alias: {
-      '@ny/luban': resolve(__dirname, 'packages/luban-core/index.ts'),
-      '@ny/luban-map': resolve(__dirname, 'packages/luban-map/index.ts'),
-      '@ny/luban-uniapp': resolve(__dirname, 'packages/luban-uniapp/index.ts'),
-      '@ny/luban-shared': resolve(__dirname, 'packages/luban-shared/index.ts'),
-      '@ny/luban-ladder': resolve(__dirname, 'packages/luban-ladder/index.ts')
+      '@ny/monitor-browser': resolve(__dirname, 'packages/monitor-browser/index.ts'),
+      '@ny/monitor-core': resolve(__dirname, 'packages/monitor-core/index.ts'),
+      '@ny/monitor-shared': resolve(__dirname, 'packages/monitor-shared/index.ts'),
+      '@ny/monitor-types': resolve(__dirname, 'packages/monitor-types/index.ts'),
+      '@ny/monitor-utils': resolve(__dirname, 'packages/monitor-utils/index.ts'),
+      '@ny/monitor-vue': resolve(__dirname, 'packages/monitor-vue/index.ts'),
+      '@ny/monitor-business': resolve(__dirname, 'packages/monitor-business/index.ts')
     }
   },
   test: {

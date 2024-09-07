@@ -61,6 +61,10 @@ module.exports = {
     // 不允许重新分配function参数
     'no-param-reassign': ['error', { props: false }],
     // 要求使用Error对象作为Promise拒绝原因
-    'prefer-promise-reject-errors': 'off'
+    'prefer-promise-reject-errors': 'off',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    'func-names': 'off',
+    'no-restricted-syntax': 'off'
   }
 };
