@@ -1,0 +1,24 @@
+{
+  "// ---------- 姓名 git.name ----------": "",
+  "mapping": {
+    "yangchuqi": "杨楚琪",
+    "zhangxiaobin": "张晓斌",
+    "xiedj": "谢顶金",
+    "xiaogang": "肖刚"
+  },
+  "// ---------- 头像 ----------": "",
+  "picture": {
+    "张晓斌": "zhangxiaobin",
+    "杨楚琪": "yangchuqi",
+    "叶天赐": "yetianci",
+    "车文宇": "chewenyu",
+    "尹永友": "yinyongyou",
+    "黄佳浩": "huangjiahao",
+    "xiedj": "xiedingjin",
+    "许基山": "xujishan"
+  },
+  "// ---------- 职位 ----------": "",
+  "post": {
+    "尹永友": "业务运维工程师"
+  }
+}

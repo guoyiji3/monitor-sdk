@@ -1,0 +1,6 @@
+test/**
+dist
+*.d.ts
+
+
+!packages/.vitepress

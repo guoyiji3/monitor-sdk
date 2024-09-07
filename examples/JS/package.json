@@ -1,0 +1,13 @@
+{
+  "name": "example-js",
+  "version": "1.0.0",
+  "description": "js example",
+  "license": "ISC",
+  "scripts": {
+    "dev": "parcel watch index.html",
+    "examples": "cross-env NODE_ENV=demo esno ../examples/server"
+  },
+  "dependencies": {
+    "@ny/monitor-browser": "workspace:^"
+  }
+}

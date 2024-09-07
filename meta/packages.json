@@ -1,0 +1,27 @@
+[
+  {
+    "name": "monitor-core",
+    "text": "监控核心工具库",
+    "description": "监控核心工具库"
+  },
+  {
+    "name": "monitor-shared",
+    "description": "监控常量工具库"
+  },
+  {
+    "name": "monitor-browser",
+    "description": "监控浏览器工具库"
+  },
+  {
+    "name": "monitor-utils",
+    "description": "监控常用工具库"
+  },
+  {
+    "name": "monitor-vue",
+    "description": "监控vue异常工具库"
+  },
+  {
+    "name": "monitor-business",
+    "description": "特殊业务处理工具库"
+  }
+]

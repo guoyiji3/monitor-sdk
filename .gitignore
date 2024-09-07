@@ -1,0 +1,18 @@
+node_modules
+coverage
+dist
+/docs
+.history
+.DS_Store
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+components.d.ts
+
+packages/metadata.json
+
+
+packages/.vitepress/cache/*

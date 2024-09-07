@@ -1,0 +1,19 @@
+{
+  "name": "@ny/monitor-business",
+  "version": "1.0.0",
+  "description": "前端监控业务模块",
+  "license": "ISC",
+  "main": "./index.cjs.js",
+  "module": "./index.esm.mjs",
+  "types": "./index.d.ts",
+  "publishConfig": {
+    "registry": "https://nynpm.91160.com/"
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.esm.mjs",
+      "require": "./index.cjs.js"
+    }
+  }
+}

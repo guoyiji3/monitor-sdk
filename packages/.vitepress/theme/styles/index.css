@@ -1,0 +1,50 @@
+/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
+@font-face {
+  font-family: '阿里妈妈刀隶体 Regular';
+  src: url('//at.alicdn.com/wf/webfont/IUDq34x1EbMG/P9HLxCCWx0ID.woff2') format('woff2'),
+    url('//at.alicdn.com/wf/webfont/IUDq34x1EbMG/sbBmoKR2Hqlg.woff') format('woff');
+  font-display: swap;
+}
+
+.vp-doc {
+  line-height: 28px;
+
+  h1:not(:first-child) {
+    margin-top: 34px;
+  }
+
+  h2 {
+    margin-top: 10px;
+    border-top: 0;
+  }
+
+  h4 {
+    margin-top: 20px;
+  }
+
+  table {
+    display: table;
+    width: 100%;
+  }
+}
+
+.VPNavBarTitle {
+  .logo {
+    margin-right: 10px;
+  }
+
+  .title-version {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    padding: 0 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    height: 20px;
+    line-height: 12px;
+    color: var(--app-primary);
+    font-weight: normal;
+    background-color: #fff;
+    border: 1px solid var(--app-primary);
+  }
+}

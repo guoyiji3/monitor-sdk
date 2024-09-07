@@ -1,0 +1,5 @@
+packages:
+  # 工具包
+  - packages/*
+  # 案列
+  - examples/*
