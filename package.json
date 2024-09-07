@@ -15,7 +15,7 @@
     "build": "pnpm run update && esno scripts/build",
     "prepare": "husky install",
     "lint": "pnpm lint:eslint",
-    "lint:eslint": "pnpm eslint . /packages/**/*.js,.ts --fix",
+    "lint:eslint": "pnpm eslint --ext ./packages/**/*.js,.ts --fix",
     "commit": "cz",
     "docs:preview": "vitepress preview packages",
     "update": "esno scripts/metadata && esno scripts/update",
