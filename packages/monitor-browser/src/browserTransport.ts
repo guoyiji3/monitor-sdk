@@ -56,6 +56,7 @@ export class BrowserTransport extends BaseTransport<BrowserOptionsFieldsTypes> {
 
   // 上报
   sendToServer(data: any, url: string) {
+    console.log('sendToServer', data, url)
     switch (this.uploadMode) {
       case 'xhr':
         return this.post(data, url);

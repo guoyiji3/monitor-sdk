@@ -46,6 +46,7 @@ async function updateCheck(name: string) {
   // 上一次发版 commit id
   const lastReleaseCommitId = await git.raw([...commands, '--grep=^release', filePath]);
   // 不需要发版
+  console.log({ state: false, name })
   if (latestCommitId === lastReleaseCommitId) return { state: false, name };
 
   try {
@@ -63,10 +64,14 @@ async function updateCheck(name: string) {
 }
 
 async function getPackageNamge() {
-  const updates = packages.map((item) => updateCheck(item.name));
-
+  const updates = packages.map((item) => {
+    console.log(updateCheck(item.name))
+    return updateCheck(item.name);
+  });
+  console.log('updates:--------------------------------->')
+  
   const choices = (await Promise.all(updates)).filter((item) => item.state).map((item) => item.name);
-
+  console.log(choices);
   if (choices.length === 0) {
     consola.warn('目前尚未找到需要进行版本发布的项目，请在提交更新的代码后再进行版本发布');
 

@@ -1,6 +1,6 @@
 import http from 'http';
 import express from 'express';
-import opn from 'open';
+import open from 'open';
 import coBody from 'co-body';
 import cors from 'cors';
 import { port, FilePaths, ServerUrls } from './config';
@@ -45,7 +45,8 @@ const server = http.createServer(app);
 
 server.listen(port, () => {
   if (process.env.NODE_ENV === 'demo') {
-    const urls = `http://localhost:${port}`;
-    console.log(`examples server is available at: ${urls}`);
+    const url = `http://localhost:${port}/JS/index.html`
+    open(url)
+    console.log(`examples server is available at: ${url}`);
   }
 });
