@@ -8,10 +8,14 @@ const cache: unknown[] = [];
  * @returns
  */
 export function getCache(useLocalCache?: boolean) {
-  if (useLocalCache) {
-    return JSON.parse(window.localStorage.getItem('fedmonitor-cache') || '{}');
+  try {
+    if (useLocalCache) {
+      return JSON.parse(window.localStorage.getItem('fedmonitor-cache') || '{}');
+    }
+    return deepCopy(cache);
+  } catch (e) {
+    console.log(e);
   }
-  return deepCopy(cache);
 }
 
 /**
@@ -20,9 +24,13 @@ export function getCache(useLocalCache?: boolean) {
  * @param useLocalCache
  */
 export function addCache(data, useLocalCache?: boolean) {
-  cache.push(data);
-  if (useLocalCache) {
-    window.localStorage.setItem('fedmonitor-cache', JSON.stringify(cache));
+  try {
+    cache.push(data);
+    if (useLocalCache) {
+      window.localStorage.setItem('fedmonitor-cache', JSON.stringify(cache));
+    }
+  } catch (e) {
+    console.log(e);
   }
 }
 

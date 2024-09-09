@@ -29,6 +29,8 @@ export interface TransportDataType {
 export interface BaseTransformType {
   name?: string;
   pageUrl?: string;
+  projectName?: string;
+  cid?: string;
   pageTitle?: string;
   timestamp?: number;
   category?: CategoryTypes;

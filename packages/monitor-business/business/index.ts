@@ -1,3 +1,4 @@
+import { getSystemInfo } from '@ny/monitor-utils';
 // 业务层处理
 
 /**
@@ -31,4 +32,36 @@ export function getBusinessErrorCode(data: string, errorCodeArr = ['error_code',
     }
   }
   return undefined;
+}
+
+/**
+ * 获取最终上报数据
+ * @param canCacheData
+ * @returns
+ */
+export function getTransportDataNew(data, { uploadMode, projectName, cid }) {
+  console.log('getTransportDataNew-------------------->');
+  const { authInfo, reportInfo } = data;
+  const { Platform, OsVersion } = getSystemInfo();
+  const { apiEnv, userId } = authInfo;
+  const report_list = reportInfo.map((item) => {
+    const { pageUrl, timestamp, level } = item?.data || {};
+    return {
+      index: 'performance',
+      cat_event_name: 'fedmonitorsdk',
+      ext: JSON.stringify(item),
+      bhv_time: timestamp,
+      cat_domain: projectName,
+      cat_event_type: uploadMode,
+      channel_id: cid,
+      current_url: pageUrl,
+      env: apiEnv,
+      log_level: level,
+      os_version: OsVersion,
+      platform: Platform,
+      request_type: 1,
+      user_id: userId
+    };
+  });
+  return report_list;
 }

@@ -4,7 +4,7 @@
   "description": "js example",
   "license": "ISC",
   "scripts": {
-    "dev": "parcel index.html --port 2025 --no-source-maps",
+    "dev": "parcel index.html --port 2026 --no-source-maps",
     "examples": "cross-env NODE_ENV=demo esno ../server"
   },
   "dependencies": {

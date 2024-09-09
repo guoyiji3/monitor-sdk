@@ -30,6 +30,15 @@ app.post(ServerUrls.exceptionPost, (req, res) => {
   res.status(500).send('post 异常响应体!!!');
 });
 
+app.post(ServerUrls.businessGet, (req, res) => {
+  res.status(200).send({
+    error_code: 200,
+    data: {
+      msg: '业务异常'
+    }
+  });
+});
+
 app.post(ServerUrls.errorsUpload, async (req, res) => {
   const parmas = await coBody.json(req);
   console.log('sendBeacon | xhr parmas', parmas);
@@ -45,8 +54,8 @@ const server = http.createServer(app);
 
 server.listen(port, () => {
   if (process.env.NODE_ENV === 'demo') {
-    const url = `http://localhost:${port}/JS/index.html`
-    open(url)
+    const url = `http://localhost:${port}/JS/index.html`;
+    open(url);
     console.log(`examples server is available at: ${url}`);
   }
 });

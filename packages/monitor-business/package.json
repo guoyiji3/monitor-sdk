@@ -15,5 +15,8 @@
       "import": "./index.esm.mjs",
       "require": "./index.cjs.js"
     }
+  },
+  "dependencies": {
+    "@ny/monitor-utils": "workspace:^"
   }
 }

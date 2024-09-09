@@ -19,6 +19,9 @@ interface IRequestHeaderConfig {
  * 公共基础配置字段
  */
 export interface BaseOptionsFieldsType {
+  projectName?: string;
+
+  cid?: string;
   /**
    * report to server's url
    */

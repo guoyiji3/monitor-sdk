@@ -32,6 +32,7 @@ export const FilePaths = {
 export const ServerUrls = {
   normalGet: '/normal',
   exceptionGet: '/exception',
+  businessGet: '/businessError',
   normalPost: '/normal/post',
   exceptionPost: '/exception/post',
   errorsUpload: '/errors/upload'

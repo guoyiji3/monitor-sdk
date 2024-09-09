@@ -460,3 +460,44 @@ export function isContains(obj: Record<string, any>, keys: string[]) {
   const objKeys = Object.keys(obj);
   return keys.every((k) => objKeys.includes(k));
 }
+
+/**
+ * 获取当前设备的 OS类型 ，和 版本
+ * @returns {Platform, OsVersion } Object
+ */
+export function getSystemInfo() {
+  const { userAgent } = navigator;
+  let Platform = 'Unknown';
+  let OsVersion = 'Unknown';
+  console.log('-----------------ua', userAgent);
+  if (/Edge\/([\d.]+)/.test(userAgent)) {
+    Platform = 'Microsoft Edge';
+    // info.browserVersion = RegExp.$1;
+  } else if (/Chrome\/([\d.]+)/.test(userAgent)) {
+    Platform = 'Google Chrome';
+    // info.browserVersion = RegExp.$1;
+  } else if (/Firefox\/([\d.]+)/.test(userAgent)) {
+    Platform = 'Mozilla Firefox';
+    // info.browserVersion = RegExp.$1;
+  } else if (/Safari\/([\d.]+)/.test(userAgent)) {
+    Platform = 'Apple Safari';
+    // info.browserVersion = RegExp.$1;
+  }
+
+  // 检测操作系统
+  if (/Windows NT ([\d.]+)/.test(userAgent)) {
+    OsVersion = `Windows NT ${RegExp.$1}`;
+  } else if (/Android ([\d.]+)/.test(userAgent)) {
+    OsVersion = `Android ${RegExp.$1}`;
+  } else if (/iPhone OS ([\d_]+)/.test(userAgent)) {
+    // 将下划线替换为点以匹配常见的版本号格式
+    OsVersion = `iOS ${RegExp.$1.replace(/_/g, '.')}`;
+  } else if (/Mac OS X ([\d_]+)/.test(userAgent)) {
+    OsVersion = 'Mac OS X'; // 版本号通常不是必需的，因为Mac OS X的版本通常与浏览器版本不直接相关
+  }
+
+  return {
+    Platform,
+    OsVersion
+  };
+}

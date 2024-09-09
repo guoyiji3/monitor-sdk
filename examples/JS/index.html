@@ -14,7 +14,7 @@
     <button id="normalFetch" onclick="onClickNativeFetch()">Fetch正常请求</button>
     <button id="exceptionFetch" onclick="onClickNativeErrorFetch()">Fetch异常请求</button>
     <button id="logUpload" onclick="mitoLog()">log上报</button>
-    <button id="logUpload" onclick="mitoLog()">log上报</button>
+    <button id="exceptionReq" onclick="onClickXhrBus()">xhr业务报错</button>
     <button id="promiseError" onclick="promiseError()">promiseError</button>
     <button id="resourceError" onclick="resourceError()">resourceError</button>
     <script>
@@ -50,6 +50,17 @@
         }).then((res) => {
           res.text().then((res) => console.log('res', res));
         });
+      }
+      function onClickXhrBus() {
+        const xhr = new XMLHttpRequest()
+        xhr.open('post', `${serverUrl}//businessError`)
+        xhr.setRequestHeader('content-type', 'application/json')
+        xhr.send()
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            console.log(xhr.responseText)
+          }
+        }
       }
       function onClickNativeErrorFetch() {
         fetch(`${serverUrl}/exception/post`, {

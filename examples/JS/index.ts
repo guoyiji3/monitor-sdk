@@ -7,8 +7,9 @@ const instance = initMonitorSDK({
   silentConsole: false,
   silentXhr: false,
   maxBreadcrumbs: 5,
-  dsn: 'http://localhost:9999/tracking',
-  serverTimeCheckDsn: 'http://localhost:9999/tracking/timeCheck',
+  projectName: 'yiyuan',
+  cid: '1234567890',
+  serverTimeCheckDsn: '',
   throttleDelayTime: 0,
   enableTraceId: false,
   uploadMode: 'sendBeacon', // sendBeacon、xhr、img

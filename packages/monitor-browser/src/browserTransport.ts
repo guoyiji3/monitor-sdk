@@ -1,5 +1,6 @@
 import { MethodTypes, ToStringTypes } from '@ny/monitor-shared';
 import { getTimestamp, safeStringify, toStringValidateOption, getLocationHref, getLocationTitle } from '@ny/monitor-utils';
+import { getTransportDataNew } from '@ny/monitor-business';
 import { ReportDataType } from '@ny/monitor-types';
 import { BaseTransport } from '@ny/monitor-core';
 import { BrowserOptionsFieldsTypes } from './types';
@@ -56,14 +57,14 @@ export class BrowserTransport extends BaseTransport<BrowserOptionsFieldsTypes> {
 
   // 上报
   sendToServer(data: any, url: string) {
-    console.log('sendToServer', data, url)
+    const list = getTransportDataNew(data, this);
     switch (this.uploadMode) {
       case 'xhr':
-        return this.post(data, url);
+        return this.post(list, url);
       case 'img':
-        return this.imgRequest(data, url);
+        return this.imgRequest(list, url);
       default:
-        return this.sendByBeacon(data, url);
+        return this.sendByBeacon(list, url);
     }
   }
 

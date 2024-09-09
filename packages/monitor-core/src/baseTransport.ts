@@ -34,6 +34,10 @@ export abstract class BaseTransport<O extends BaseOptionsFieldsIntegrationType =
 
   dsn = '';
 
+  projectName = '';
+
+  cid = '';
+
   serverTimeCheckDsn = '';
 
   queue: Queue;
@@ -157,13 +161,17 @@ export abstract class BaseTransport<O extends BaseOptionsFieldsIntegrationType =
       cacheReportLenLimit,
       cacheReportTimeLimit,
       sampleRate,
-      serverTimeCheckDsn
+      serverTimeCheckDsn,
+      projectName,
+      cid
     } = options;
     const optionArr: [any, string, ToStringTypes][] = [
       [apiKey, 'apiKey', ToStringTypes.String],
       [apiEnv, 'apiEnv', ToStringTypes.String],
       [userId, 'userId', ToStringTypes.String],
       [dsn, 'dsn', ToStringTypes.String],
+      [cid, 'cid', ToStringTypes.String],
+      [projectName, 'projectName', ToStringTypes.String],
       [serverTimeCheckDsn, 'serverTimeCheckDsn', ToStringTypes.String],
       [maxDuplicateCount, 'maxDuplicateCount', ToStringTypes.Number],
       [beforeDataReport, 'beforeDataReport', ToStringTypes.Function],
@@ -205,7 +213,7 @@ export abstract class BaseTransport<O extends BaseOptionsFieldsIntegrationType =
     }
 
     // 上报接口为必填
-    let { dsn } = this;
+    let dsn = this.dsn || 'https://logcollect.91160.com/v2/dev/web?type=performance';
     if (isEmpty(dsn)) {
       logger.error('dsn is empty, pass in when initializing please');
       return;
@@ -324,7 +332,7 @@ export abstract class BaseTransport<O extends BaseOptionsFieldsIntegrationType =
     }
 
     // 上报接口为必填
-    let { dsn } = this;
+    let dsn = this.dsn || 'https://logcollect.91160.com/v2/dev/web?type=performance';
     if (isEmpty(dsn)) {
       logger.error('dsn is empty,pass in when initializing please');
       return;
