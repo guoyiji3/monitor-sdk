@@ -39,7 +39,15 @@ function run() {
   execSync('npm run clean', { stdio: 'inherit' });
 
   consola.info('Rollup');
-  execSync('npm run build:rollup', { stdio: 'inherit' });
+
+  const args = process.argv.slice(2);
+
+  let command = 'npm run build:rollup';
+  if (args[0]?.trim() === '--watch') {
+    command = 'npm run rollup:watch';
+  }
+
+  execSync(command, { stdio: 'inherit' });
 
   buildMetaFiles();
 }
